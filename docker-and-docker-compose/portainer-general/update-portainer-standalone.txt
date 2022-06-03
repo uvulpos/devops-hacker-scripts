@@ -1,0 +1,18 @@
+# list all containers
+docker container ls
+
+# list all images
+docker images
+
+# stop portainer and remove current container
+docker stop portainer
+docker rm portainer
+
+# delete current image
+docker rmi portainer
+
+# download latest or other version tagged
+docker pull portainer/portainer-ce:latest
+
+# deploy portainer
+docker run -d -p 8000:8000 -p 9000:9000 -p 9443:9443 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest

@@ -1,0 +1,24 @@
+version: '2'
+
+volumes:
+     nginxproxymanager-data:
+        external: false
+     nginxproxymanager-letsencrypt:
+        external: false
+        
+networks:
+  nginxproxymanager-network:
+
+services:
+  app:
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '81:81'
+      - '443:443'
+    volumes:
+      - nginxproxymanager-data:/data
+      - nginxproxymanager-letsencrypt:/etc/letsencrypt
+    networks:
+      - nginxproxymanager-network
