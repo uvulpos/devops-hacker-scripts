@@ -1,0 +1,23 @@
+version: '2'
+
+volumes:
+     pihole-data:
+        external: false
+     pihole-dnsmasq:
+        external: false
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "14001:80/tcp"
+    environment:
+      TZ: 'Europe/Berlin'
+      WEBPASSWORD: 'something-else'
+    volumes:
+      - 'pihole-data:/etc/pihole'
+      - 'pihole-dnsmasq:/etc/dnsmasq.d'    
+    restart: unless-stopped

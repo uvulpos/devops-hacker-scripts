@@ -1,0 +1,16 @@
+# deactivate current dns resolver
+sudo systemctl stop systemd-resolved.service
+sudo systemctl disable systemd-resolved.service
+
+# this should now fail
+ping google.com -c2
+
+# now lets edit the dns nameserver
+sudo nano /etc/resolv.conf 
+    # this is my config in there (that's all)
+    nameserver 1.1.1.1
+    options edns0 trust-ad
+    search fritz.box
+
+# this should work now
+ping google.com -c2
