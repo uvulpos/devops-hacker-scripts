@@ -1,0 +1,13 @@
+version: '2'
+
+volumes:
+     nextcloud-data:
+        external: false
+
+services:
+  pihole:
+    container_name: nextcloud
+    image: nextcloud:latest
+    volumes:
+      - 'nextcloud-data:/var/www/html'
+    restart: unless-stopped
