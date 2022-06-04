@@ -1,0 +1,13 @@
+version: '2'
+
+volumes:
+     uptimekuma-data:
+        external: false
+
+services:
+  pihole:
+    container_name: uptimekuma
+    image: louislam/uptime-kuma:latest
+    volumes:
+      - 'uptimekuma-data:/app/data'
+    restart: unless-stopped
